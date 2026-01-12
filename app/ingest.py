@@ -1,0 +1,35 @@
+from flask import Blueprint, request, jsonify
+from datetime import datetime
+from db import telemetry_collection
+
+ingest_bp = Blueprint("ingest", __name__)
+
+
+@ingest_bp.route("/api/v1/analytics/batch", methods=["POST"])
+def ingest_batch():
+    try:
+        payload = request.get_json(force=True)
+
+        if not isinstance(payload, list):
+            return jsonify({"error": "Payload must be a list"}), 400
+
+        now = datetime.utcnow()
+        docs = []
+
+        for event in payload:
+            docs.append(
+                {
+                    "type": event.get("type"),
+                    "data": event.get("data", {}),
+                    "meta": event.get("meta", {}),
+                    "timestamp": event.get("meta", {}).get("timestamp", now),
+                }
+            )
+
+        if docs:
+            telemetry_collection.insert_many(docs, ordered=False)
+
+        return jsonify({"status": "ok"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
