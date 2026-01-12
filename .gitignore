@@ -1,0 +1,94 @@
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# ================================
+# Flask
+# ================================
+instance/
+.webassets-cache/
+
+# ================================
+# Logs
+# ================================
+*.log
+logs/
+
+# ================================
+# Environment variables
+# ================================
+.env
+.env.*
+!.env.example
+
+# ================================
+# Docker
+# ================================
+# Docker volumes & runtime files
+docker-data/
+mongo-data/
+data/
+
+# Docker override files
+docker-compose.override.yml
+
+# ================================
+# MongoDB
+# ================================
+*.bson
+*.lock
+
+# ================================
+# OS files
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+# Editors & IDEs
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ================================
+# Coverage / Tests
+# ================================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ================================
+# Gunicorn
+# ================================
+gunicorn.pid
+
+# ================================
+# Frontend (if bundled)
+# ================================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ================================
+# Misc
+# ================================
+.cache/
+tmp/
+app/__pycache__/

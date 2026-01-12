@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from db import telemetry_collection
+from app.db import telemetry_collection
 
 query_bp = Blueprint("query", __name__)
 

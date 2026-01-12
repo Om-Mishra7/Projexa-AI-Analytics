@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
-from ingest import ingest_bp
-from queries import query_bp
+from app.ingest import ingest_bp
+from app.queries import query_bp
 import db  # IMPORTANT: triggers collection creation
 
 app = Flask(__name__, static_folder="frontend", static_url_path="/frontend")

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from datetime import datetime
-from db import telemetry_collection
+from app.db import telemetry_collection
 
 ingest_bp = Blueprint("ingest", __name__)
 
