@@ -11,6 +11,8 @@ def get_recent_events():
     results = []
     for doc in cursor:
         doc["_id"] = str(doc["_id"])
+        if "timestamp" in doc and hasattr(doc["timestamp"], "isoformat"):
+            doc["timestamp"] = doc["timestamp"].isoformat()
         results.append(doc)
 
     return jsonify(results)

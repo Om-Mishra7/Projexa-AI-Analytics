@@ -17,12 +17,21 @@ def ingest_batch():
         docs = []
 
         for event in payload:
+            # Parse timestamp if present in meta
+            timestamp = now
+            meta = event.get("meta", {})
+            if "timestamp" in meta:
+                try:
+                    timestamp = datetime.fromisoformat(meta["timestamp"].replace("Z", "+00:00"))
+                except ValueError:
+                    pass  # Fallback to 'now' if parsing fails
+
             docs.append(
                 {
                     "type": event.get("type"),
                     "data": event.get("data", {}),
-                    "meta": event.get("meta", {}),
-                    "timestamp": event.get("meta", {}).get("timestamp", now),
+                    "meta": meta,
+                    "timestamp": timestamp,
                 }
             )
 
