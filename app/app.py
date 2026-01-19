@@ -4,7 +4,7 @@ from app.ingest import ingest_bp
 from app.queries import query_bp
 
 app = Flask(__name__, static_folder="frontend", static_url_path="/frontend")
-CORS(app)
+CORS(app, origins=["https://projexa.ai", "http://projexa.ai"])
 
 app.register_blueprint(ingest_bp)
 app.register_blueprint(query_bp)
